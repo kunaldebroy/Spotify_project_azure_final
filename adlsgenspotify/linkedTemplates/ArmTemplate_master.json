@@ -1,0 +1,84 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adlsgenspotify"
+		},
+		"Datafactory_to_Storage_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Datafactory_to_Storage'"
+		},
+		"SQL_to_DataFactory_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SQL_to_DataFactory'"
+		},
+		"Datafactory_to_Storage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://spotifydatabase1.dfs.core.windows.net/"
+		},
+		"SQL_to_DataFactory_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "spotifyuk.database.windows.net"
+		},
+		"SQL_to_DataFactory_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "spotify_prem"
+		},
+		"SQL_to_DataFactory_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "AdminKunal"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adlsgenspotify_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Datafactory_to_Storage_accountKey": {
+						"value": "[parameters('Datafactory_to_Storage_accountKey')]"
+					},
+					"SQL_to_DataFactory_password": {
+						"value": "[parameters('SQL_to_DataFactory_password')]"
+					},
+					"Datafactory_to_Storage_properties_typeProperties_url": {
+						"value": "[parameters('Datafactory_to_Storage_properties_typeProperties_url')]"
+					},
+					"SQL_to_DataFactory_properties_typeProperties_server": {
+						"value": "[parameters('SQL_to_DataFactory_properties_typeProperties_server')]"
+					},
+					"SQL_to_DataFactory_properties_typeProperties_database": {
+						"value": "[parameters('SQL_to_DataFactory_properties_typeProperties_database')]"
+					},
+					"SQL_to_DataFactory_properties_typeProperties_userName": {
+						"value": "[parameters('SQL_to_DataFactory_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
