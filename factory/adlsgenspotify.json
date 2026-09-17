@@ -1,0 +1,15 @@
+{
+	"name": "adlsgenspotify",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a21e0e3e-a98d-43a1-9b90-238f427013d8",
+		"tenantId": "31d717f9-32cf-49a3-8a94-402e32306ae1"
+	}
+}
