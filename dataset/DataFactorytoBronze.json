@@ -1,0 +1,18 @@
+{
+	"name": "DataFactorytoBronze",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Datafactory_to_Storage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
